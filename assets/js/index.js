@@ -8,11 +8,9 @@
              method: "GET"
          })
          .done(function(response) {
-             console.log(response);
              var curLat = response.iss_position.latitude;
              var curLon = response.iss_position.longitude;
              var timeStamp = moment.unix(response.timestamp).format("MM/DD/YYYY");
-             //Add AJAX here
              $.ajax({
                      url: queryLat + curLat + ',' + curLon,
                      method: "GET"
@@ -21,9 +19,6 @@
                      tryURL = queryLat + curLat + ',' + curLon;
                      console.log(tryURL);
                  });
-
-
-
              $("#text").html("<div class=" + "panel panel-default" + "><div class=" + "panel-body" + "id=" + "text" + "><h2 class=" + "text-center" + ">The ISS is currently at <span id=" + "latitude" + "></span> degrees latitude and <span id=" + "longitude" + "></span> degrees longitude as of <span id=" + "timestamp" + "></h2></span></div></div>");
              $("#latitude").text(curLat);
              $("#longitude").text(curLon);
@@ -32,19 +27,14 @@
  });
 
  $("#locationSearchSubmit").on("click", function() {
-
      userNoURI = $("#locationSearch").val();
-
      if (!userNoURI) {
       alert("Please enter a valid location knucklehead");
      }
      else {
-
        userInput = encodeURI($("#locationSearch").val());
        userURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + userInput + "&key=%20AIzaSyDlKkxy7ExYhv5v5oxDtBBOXlPjouE-lyE";
        var userLat, userLon;
-       console.log(userURL);
-
        $.ajax({
                url: userURL,
                method: "GET"
@@ -56,7 +46,7 @@
                console.log(userLon);
                getISSPassTime(userLat, userLon);
            });
-
+           
        function getISSPassTime(userLat, userLon) {
            userCoordinateURL = "http://api.open-notify.org/iss-pass.json?lat=" + userLat + "&lon=" + userLon;
            $.ajax({
@@ -65,11 +55,7 @@
                    dataType: "jsonp"
                })
                .done(function(response) {
-                   console.log(response);
-                   console.log(response.response[0].risetime);
                    var passTime = moment.unix(response.response[0].risetime).format("MM/DD/YYYY HH:MM:SS");
-                   console.log(passTime);
-
                    $("#passText").html("<div class=" + "panel panel-default" + "><div class=" + "panel-body" + "id=" + "text" + "><h2 class = " + "text-center" + ">The International Space Station will be above <span id=" + "userLocation" + "></span> at <span id=" + "passTime" + "></span></h2></span></div></div>");
                    $("#userLocation").text(userNoURI);
                    $("#passTime").text(passTime);
