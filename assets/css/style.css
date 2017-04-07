@@ -19,3 +19,18 @@ h1 {
 }
 #return-location {
 }
+
+.panel-default{
+    background: transparent;
+}
+
+
+
+.panel-body{
+        background: rgba(46, 51, 56, 0.2)!important;
+    }
+
+  #locationSearch {
+    height:50px;
+    font-size:14pt;
+}
