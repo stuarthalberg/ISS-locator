@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,61 +9,41 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <script src="http://code.jquery.com/jquery-2.1.3.js"></script>
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-    
-    
-
-   
-
 </head>
-<body>
 
+<body>
     <div class="container">
         <div class="jumbotron">
             <h1>International Space Station Location</h1>
         </div>
         <div class="row">
             <div class="row">
-                <button type="button" id = "button" class="btn btn-secondary btn-lg btn-block"><h3>Where Is The International Space Station Currently?</h3></button>
-                <!-- <button type="submit" id="button" class="btn btn-default"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"> Where Is The International Space Station?</span></button> -->
+                <button type="button" id="button" class="btn btn-secondary btn-lg btn-block">
+                    <h3>Where Is The International Space Station Currently?</h3></button>
                 </br>
                 <div class="container">
-                </br>
-            </div>
-            <div id="text">
-            </div>
-
-            <div class="panel panel-default">
-  <div class="panel-heading"><h3>Where will the ISS be in:</h3></div>
-  <div class="panel-body">
-      <input type=search id="locationSearch">
-    
-                <button type="submit" class="btn btn-default" id="locationSearchSubmit"><span class="glyphicon glyphicon-search" aria-hidden="true"> Submit</span></button>
-
-
-  </div>
-</div>
-
-                
-                
-                
-            
+                    </br>
+                </div>
+                <div id="text">
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3>Where will the ISS be in:</h3></div>
+                    <div class="panel-body">
+                        <input type=search id="locationSearch">
+                        <button type="submit" class="btn btn-default" id="locationSearchSubmit"><span class="glyphicon glyphicon-search" aria-hidden="true"> Submit</span></button>
+                    </div>
+                </div>
                 <div id="passText">
                     </br>
                 </div>
             </div>
         </div>
     </div>
-    <div id="map" hidden="true">
-    </div>
-    <div id="return-location">
-    </div>
-
-
-    
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaAigrAnmXBWJf-LuAYjdzrpvX4Z8zyhk&callback=initMap" type="text/javascript"></script>
-    <script src="assets/js/index.js"></script>    
-    
-
+   <div id="map"><p>map goes here</p></div>
+    <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaAigrAnmXBWJf-LuAYjdzrpvX4Z8zyhk&callback=initMap" type="text/javascript"></script> -->
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaAigrAnmXBWJf-LuAYjdzrpvX4Z8zyhk&callback=initMap"></script> -->
+    <script src="assets/js/index.js"></script>
 </body>
 
 </html>
