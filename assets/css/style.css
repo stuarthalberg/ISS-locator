@@ -24,6 +24,10 @@ h1 {
     background: transparent;
 }
 
+.jumbotron {
+  margin-top: 20px;
+}
+
 
 
 .panel-body{

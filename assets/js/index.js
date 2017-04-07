@@ -1,8 +1,10 @@
  $("#map").attr("hidden", "false");
 
  $("#button").on("click", function() {
-     var queryURL = "http://api.open-notify.org/iss-now.json"
+     var queryURL = "http://api.open-notify.org/iss-now.json";
      var queryLat = "http://maps.googleapis.com/maps/api/geocode/json?latlng=";
+     var formattedLocation,
+         returnStatus;
      $.ajax({
              url: queryURL,
              method: "GET"
@@ -17,14 +19,23 @@
                  })
                  .done(function(response) {
                      tryURL = queryLat + curLat + ',' + curLon;
-                     console.log(tryURL);
-                 });
-             $("#text").html("<div class=" + "panel panel-default" + "><div class=" + "panel-body" + "id=" + "text" + "><h2 class=" + "text-center" + ">The ISS is currently at <span id=" + "latitude" + "></span> degrees latitude and <span id=" + "longitude" + "></span> degrees longitude as of <span id=" + "timestamp" + "></h2></span></div></div>");
+                     $("#text").html("<div class=" + "panel panel-default" + "><div class=" + "panel-body" + "id=" + "text" + "><h2 class=" + "text-center" + ">The ISS is currently at <span id=" + "latitude" + "></span> degrees latitude and <span id=" + "longitude" + "></span> degrees longitude as of <span id=" + "timestamp" + "></h2></span></div></div>");
              $("#latitude").text(curLat);
              $("#longitude").text(curLon);
              $("#timestamp").text(timeStamp);
+             
+                     
+                 });
+          
+              
+        
+
+            
+
+             
+           });
          });
- });
+ 
 
  $("#locationSearchSubmit").on("click", function() {
      userNoURI = $("#locationSearch").val();
@@ -33,7 +44,7 @@
      }
      else {
        userInput = encodeURI($("#locationSearch").val());
-       userURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + userInput + "&key=%20AIzaSyDlKkxy7ExYhv5v5oxDtBBOXlPjouE-lyE";
+       userURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + userInput + "&key=AIzaSyAaAigrAnmXBWJf-LuAYjdzrpvX4Z8zyhk";
        var userLat, userLon;
        $.ajax({
                url: userURL,
@@ -42,11 +53,9 @@
            .done(function(response) {
                userLat = response.results[0].geometry.location.lat;
                userLon = response.results[0].geometry.location.lng;
-               console.log(userLat);
-               console.log(userLon);
                getISSPassTime(userLat, userLon);
            });
-           
+
        function getISSPassTime(userLat, userLon) {
            userCoordinateURL = "http://api.open-notify.org/iss-pass.json?lat=" + userLat + "&lon=" + userLon;
            $.ajax({
