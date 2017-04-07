@@ -8,7 +8,7 @@ $(function() {
  // $("#map").attr("hidden", "false");
 
  $("#button").on("click", function() {
-     var queryURL = "https://api.open-notify.org/iss-now.json";
+     var queryURL = "http://api.open-notify.org/iss-now.json";
      var queryLat = "https://maps.googleapis.com/maps/api/geocode/json?latlng=";
      var formattedLocation,
          returnStatus;
@@ -71,7 +71,7 @@ $(function() {
            });
 
        function getISSPassTime(userLat, userLon) {
-           userCoordinateURL = "https://api.open-notify.org/iss-pass.json?lat=" + userLat + "&lon=" + userLon;
+           userCoordinateURL = "http://api.open-notify.org/iss-pass.json?lat=" + userLat + "&lon=" + userLon;
            $.ajax({
                    url: userCoordinateURL,
                    method: "GET",
