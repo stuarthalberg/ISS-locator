@@ -1,4 +1,8 @@
+$("#map").hide();
 
+$(function() {
+ $('#locationSearch').tooltip();
+});
 
 
  // $("#map").attr("hidden", "false");
@@ -16,7 +20,7 @@
           
              var curLat = response.iss_position.latitude;
              var curLon = response.iss_position.longitude;
-             var timeStamp = moment.unix(response.timestamp).format("MM/DD/YYYY");
+             var timeStamp = moment.unix(response.timestamp).format("MM/DD/YYYY hh:mm A");
              $.ajax({
                      url: queryLat + curLat + ',' + curLon,
                      method: "GET"
@@ -28,6 +32,9 @@
              $("#latitude").text(curLat);
              $("#longitude").text(curLon);
              $("#timestamp").text(timeStamp);
+             initMap(curLat, curLon);
+             $("#map").show();
+
 
              
                      
@@ -60,6 +67,7 @@
                userLat = response.results[0].geometry.location.lat;
                userLon = response.results[0].geometry.location.lng;
                getISSPassTime(userLat, userLon);
+               
            });
 
        function getISSPassTime(userLat, userLon) {
@@ -71,7 +79,7 @@
                })
                .done(function(response) {
 
-                   var passTime = moment.unix(response.response[0].risetime).format("MM/DD/YYYY HH:MM:SS");
+                   var passTime = moment.unix(response.response[0].risetime).format("MM/DD/YYYY hh:mm A");
                    $("#passText").html("<div class=" + "panel panel-default" + "><div class=" + "panel-body" + "id=" + "text" + "><h2 class = " + "text-center" + ">The International Space Station will be above <span id=" + "userLocation" + "></span> at <span id=" + "passTime" + "></span></h2></span></div></div>");
                    $("#userLocation").text(userNoURI);
                    $("#passTime").text(passTime);
@@ -86,14 +94,16 @@
 
  // initMap();
 
- // function initMap() {
- //     var uluru = { lat: -25.363, lng: 131.044 };
- //     var map = new google.maps.Map(document.getElementById('map'), {
- //         zoom: 4,
- //         center: uluru
- //     });
- //     var marker = new google.maps.Marker({
- //         position: uluru,
- //         map: map
- //     });
- // }
+ function initMap(userLat, userLon) {
+  console.log(userLat, userLon);
+     var uluru = { lat: parseFloat(userLat), lng: parseFloat(userLon) };
+     var map = new google.maps.Map(document.getElementById('map'), {
+         zoom: 7,
+         center: uluru
+         // mapType: satellite
+     });
+     var marker = new google.maps.Marker({
+         position: uluru,
+         map: map
+     });
+ }
